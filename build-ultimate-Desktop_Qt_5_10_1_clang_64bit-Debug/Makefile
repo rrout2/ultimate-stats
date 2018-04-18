@@ -51,9 +51,13 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../ultimate/main.cpp \
-		../ultimate/mainwindow.cpp moc_mainwindow.cpp
+		../ultimate/mainwindow.cpp \
+		../ultimate/player.cpp \
+		../ultimate/roster.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		player.o \
+		roster.o \
 		moc_mainwindow.o
 DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/qdevice.pri \
@@ -213,6 +217,7 @@ DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		../ultimate/.qmake.stash \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -240,8 +245,12 @@ DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/exceptions.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/yacc.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/lex.prf \
-		../ultimate/ultimate.pro ../ultimate/mainwindow.h ../ultimate/main.cpp \
-		../ultimate/mainwindow.cpp
+		../ultimate/ultimate.pro ../ultimate/mainwindow.h \
+		../ultimate/player.h \
+		../ultimate/roster.h ../ultimate/main.cpp \
+		../ultimate/mainwindow.cpp \
+		../ultimate/player.cpp \
+		../ultimate/roster.cpp
 QMAKE_TARGET  = ultimate
 DESTDIR       = 
 TARGET        = ultimate.app/Contents/MacOS/ultimate
@@ -417,6 +426,7 @@ Makefile: ../ultimate/ultimate.pro /Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/toolchain.prf \
@@ -607,6 +617,7 @@ Makefile: ../ultimate/ultimate.pro /Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/qt_config.prf:
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/toolchain.prf:
@@ -668,8 +679,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/mainwindow.h ../ultimate/player.h ../ultimate/roster.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp ../ultimate/player.cpp ../ultimate/roster.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ultimate/mainwindow.ui $(DISTDIR)/
 
 
@@ -680,6 +691,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r ultimate.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -746,6 +758,13 @@ mainwindow.o: ../ultimate/mainwindow.cpp ../ultimate/mainwindow.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ultimate/mainwindow.cpp
+
+player.o: ../ultimate/player.cpp ../ultimate/player.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../ultimate/player.cpp
+
+roster.o: ../ultimate/roster.cpp ../ultimate/roster.h \
+		../ultimate/player.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o roster.o ../ultimate/roster.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
