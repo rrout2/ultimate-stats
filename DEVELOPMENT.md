@@ -7,3 +7,4 @@
 ## 4/17/18
 * Made classes for Player and Roster objects
 * very basic GUI to add players to roster on opening screen
+* can remove players with "undo" button
