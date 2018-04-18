@@ -31,6 +31,7 @@ public:
     QWidget *centralWidget;
     QLineEdit *lineEdit;
     QLabel *label;
+    QLabel *label_2;
     QPushButton *pushButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -40,22 +41,26 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(315, 367);
+        MainWindow->resize(984, 544);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(0, 20, 113, 21));
+        lineEdit->setGeometry(QRect(90, 30, 113, 21));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(0, 0, 91, 16));
+        label->setGeometry(QRect(100, 10, 91, 16));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(100, 60, 91, 411));
+        label_2->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(0, 40, 113, 32));
+        pushButton->setGeometry(QRect(210, 30, 61, 32));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 315, 22));
+        menuBar->setGeometry(QRect(0, 0, 984, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -73,7 +78,8 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
         label->setText(QApplication::translate("MainWindow", "Add to Roster:", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "Display Roster", nullptr));
+        label_2->setText(QString());
+        pushButton->setText(QApplication::translate("MainWindow", "Undo", nullptr));
     } // retranslateUi
 
 };
