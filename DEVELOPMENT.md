@@ -9,4 +9,4 @@
 * very basic GUI to add players to roster on opening screen
 * can remove players with "undo" button
 
-![BasicRoster](../screenshots/rostering1.png)
+![BasicRoster](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/rostering1.png?token=Acz5q8Xqd-t8pSMErPh66kFdfHNTotWRks5a4AliwA%3D%3D)
