@@ -41,6 +41,9 @@ void MainWindow::on_lineEdit_returnPressed() // add new person to roster
 
 void MainWindow::on_pushButton_clicked()
 {
+    if (ours.team.empty()) {
+        return;
+    }
     ours.team.pop_back();
     QString qs = "";
     for(auto a : ours.team) {
