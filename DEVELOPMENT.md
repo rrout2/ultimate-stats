@@ -8,3 +8,5 @@
 * Made classes for Player and Roster objects
 * very basic GUI to add players to roster on opening screen
 * can remove players with "undo" button
+![BasicRoster]
+(../screenshots/rostering1.png)
