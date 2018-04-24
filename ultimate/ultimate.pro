@@ -27,12 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     player.cpp \
-    roster.cpp
+    roster.cpp \
+    offense.cpp \
+    defense.cpp \
+    chooseside.cpp
 
 HEADERS += \
         mainwindow.h \
     player.h \
-    roster.h
+    roster.h \
+    offense.h \
+    defense.h \
+    chooseside.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    offense.ui \
+    defense.ui \
+    chooseside.ui

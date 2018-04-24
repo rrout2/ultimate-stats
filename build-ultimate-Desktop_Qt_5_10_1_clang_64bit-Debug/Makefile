@@ -53,12 +53,24 @@ OBJECTS_DIR   = ./
 SOURCES       = ../ultimate/main.cpp \
 		../ultimate/mainwindow.cpp \
 		../ultimate/player.cpp \
-		../ultimate/roster.cpp moc_mainwindow.cpp
+		../ultimate/roster.cpp \
+		../ultimate/offense.cpp \
+		../ultimate/defense.cpp \
+		../ultimate/chooseside.cpp moc_mainwindow.cpp \
+		moc_offense.cpp \
+		moc_defense.cpp \
+		moc_chooseside.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		player.o \
 		roster.o \
-		moc_mainwindow.o
+		offense.o \
+		defense.o \
+		chooseside.o \
+		moc_mainwindow.o \
+		moc_offense.o \
+		moc_defense.o \
+		moc_chooseside.o
 DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/qdevice.pri \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/device_config.prf \
@@ -247,10 +259,16 @@ DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/lex.prf \
 		../ultimate/ultimate.pro ../ultimate/mainwindow.h \
 		../ultimate/player.h \
-		../ultimate/roster.h ../ultimate/main.cpp \
+		../ultimate/roster.h \
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/chooseside.h ../ultimate/main.cpp \
 		../ultimate/mainwindow.cpp \
 		../ultimate/player.cpp \
-		../ultimate/roster.cpp
+		../ultimate/roster.cpp \
+		../ultimate/offense.cpp \
+		../ultimate/defense.cpp \
+		../ultimate/chooseside.cpp
 QMAKE_TARGET  = ultimate
 DESTDIR       = 
 TARGET        = ultimate.app/Contents/MacOS/ultimate
@@ -264,7 +282,7 @@ EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h $(OBJECTS)  
 	@test -d ultimate.app/Contents/MacOS/ || mkdir -p ultimate.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -679,9 +697,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/mainwindow.h ../ultimate/player.h ../ultimate/roster.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp ../ultimate/player.cpp ../ultimate/roster.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/mainwindow.h ../ultimate/player.h ../ultimate/roster.h ../ultimate/offense.h ../ultimate/defense.h ../ultimate/chooseside.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp ../ultimate/player.cpp ../ultimate/roster.cpp ../ultimate/offense.cpp ../ultimate/defense.cpp ../ultimate/chooseside.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/mainwindow.ui ../ultimate/offense.ui ../ultimate/defense.ui ../ultimate/chooseside.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -713,26 +731,66 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp
 moc_mainwindow.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		../ultimate/chooseside.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ultimate/mainwindow.h \
 		moc_predefs.h \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
 	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/mainwindow.h -o moc_mainwindow.cpp
 
+moc_offense.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/offense.h \
+		moc_predefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
+	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/offense.h -o moc_offense.cpp
+
+moc_defense.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/defense.h \
+		moc_predefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
+	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/defense.h -o moc_defense.cpp
+
+moc_chooseside.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		../ultimate/chooseside.h \
+		moc_predefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
+	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/chooseside.h -o moc_chooseside.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h
 ui_mainwindow.h: ../ultimate/mainwindow.ui \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
 	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/mainwindow.ui -o ui_mainwindow.h
+
+ui_offense.h: ../ultimate/offense.ui \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
+	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/offense.ui -o ui_offense.h
+
+ui_defense.h: ../ultimate/defense.ui \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
+	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/defense.ui -o ui_defense.h
+
+ui_chooseside.h: ../ultimate/chooseside.ui \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
+	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/chooseside.ui -o ui_chooseside.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -749,6 +807,11 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 main.o: ../ultimate/main.cpp ../ultimate/mainwindow.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		../ultimate/chooseside.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ultimate/main.cpp
@@ -756,7 +819,14 @@ main.o: ../ultimate/main.cpp ../ultimate/mainwindow.h \
 mainwindow.o: ../ultimate/mainwindow.cpp ../ultimate/mainwindow.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		../ultimate/chooseside.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_mainwindow.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ultimate/mainwindow.cpp
 
 player.o: ../ultimate/player.cpp ../ultimate/player.h
@@ -766,8 +836,37 @@ roster.o: ../ultimate/roster.cpp ../ultimate/roster.h \
 		../ultimate/player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o roster.o ../ultimate/roster.cpp
 
+offense.o: ../ultimate/offense.cpp ../ultimate/offense.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_offense.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o offense.o ../ultimate/offense.cpp
+
+defense.o: ../ultimate/defense.cpp ../ultimate/defense.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_defense.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o defense.o ../ultimate/defense.cpp
+
+chooseside.o: ../ultimate/chooseside.cpp ../ultimate/chooseside.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		ui_chooseside.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chooseside.o ../ultimate/chooseside.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_offense.o: moc_offense.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_offense.o moc_offense.cpp
+
+moc_defense.o: moc_defense.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_defense.o moc_defense.cpp
+
+moc_chooseside.o: moc_chooseside.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chooseside.o moc_chooseside.cpp
 
 ####### Install
 

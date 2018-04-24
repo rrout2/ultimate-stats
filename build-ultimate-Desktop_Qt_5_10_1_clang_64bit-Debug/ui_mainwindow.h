@@ -33,6 +33,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -41,7 +42,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(984, 544);
+        MainWindow->resize(358, 680);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         lineEdit = new QLineEdit(centralWidget);
@@ -52,15 +53,18 @@ public:
         label->setGeometry(QRect(100, 10, 91, 16));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(100, 60, 91, 411));
+        label_2->setGeometry(QRect(90, 60, 121, 471));
         label_2->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(210, 30, 61, 32));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(210, 80, 141, 61));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 984, 22));
+        menuBar->setGeometry(QRect(0, 0, 358, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -80,6 +84,7 @@ public:
         label->setText(QApplication::translate("MainWindow", "Add to Roster:", nullptr));
         label_2->setText(QString());
         pushButton->setText(QApplication::translate("MainWindow", "Undo", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Continue to Game", nullptr));
     } // retranslateUi
 
 };

@@ -36,12 +36,12 @@ void MainWindow::on_lineEdit_returnPressed() // add new person to roster
         qs += "\n";
     }
     ui->label_2->setText(qs);
-    qDebug() << "anotha";
+//    qDebug() << "anotha";
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    if (ours.team.empty()) {
+    if (ours.team.empty()) { // can't pop back if list is empty
         return;
     }
     ours.team.pop_back();
@@ -51,5 +51,12 @@ void MainWindow::on_pushButton_clicked()
         qs += "\n";
     }
     ui->label_2->setText(qs);
-    qDebug() << "anotha";
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    hide();
+    choose = new chooseside(this, ours);
+    choose->show();
+
 }

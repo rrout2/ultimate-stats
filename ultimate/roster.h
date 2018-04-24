@@ -7,6 +7,7 @@ class roster
 {
 public:
     roster();
+    roster(roster &other);
     std::vector<player> team;
 };
 
