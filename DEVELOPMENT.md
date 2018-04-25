@@ -22,3 +22,4 @@
 ## 4/24/18
 * Connected chooseside.ui to offense.ui and defense.ui
 * Having problem with 10th(?) position in rostering, offset checkbox
+![problem](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/problem_offset.png?token=Acz5q2AfxQfkzIrrtp_t1NSEySIfo67Qks5a6SdkwA%3D%3D)
