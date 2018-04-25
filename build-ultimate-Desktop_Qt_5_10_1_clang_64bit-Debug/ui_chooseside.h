@@ -24,7 +24,6 @@ QT_BEGIN_NAMESPACE
 class Ui_chooseside
 {
 public:
-    QPushButton *pushButton;
     QPushButton *pushButton_2;
     QLabel *label;
     QLabel *label_1;
@@ -72,18 +71,16 @@ public:
     QPushButton *pushButton_3;
     QLabel *myLine;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
 
     void setupUi(QDialog *chooseside)
     {
         if (chooseside->objectName().isEmpty())
             chooseside->setObjectName(QStringLiteral("chooseside"));
         chooseside->resize(400, 567);
-        pushButton = new QPushButton(chooseside);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(0, 500, 191, 71));
         pushButton_2 = new QPushButton(chooseside);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(190, 500, 191, 71));
+        pushButton_2->setGeometry(QRect(200, 490, 191, 71));
         label = new QLabel(chooseside);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(90, 20, 91, 21));
@@ -244,6 +241,9 @@ public:
         pushButton_4 = new QPushButton(chooseside);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setGeometry(QRect(0, 20, 81, 32));
+        pushButton_5 = new QPushButton(chooseside);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(10, 490, 191, 71));
 
         retranslateUi(chooseside);
 
@@ -253,7 +253,6 @@ public:
     void retranslateUi(QDialog *chooseside)
     {
         chooseside->setWindowTitle(QApplication::translate("chooseside", "Dialog", nullptr));
-        pushButton->setText(QApplication::translate("chooseside", "Offense", nullptr));
         pushButton_2->setText(QApplication::translate("chooseside", "Defense", nullptr));
         label->setText(QApplication::translate("chooseside", "7 on the line?", nullptr));
         label_1->setText(QString());
@@ -301,6 +300,7 @@ public:
         pushButton_3->setText(QApplication::translate("chooseside", "Confirm Line", nullptr));
         myLine->setText(QApplication::translate("chooseside", "Line", nullptr));
         pushButton_4->setText(QApplication::translate("chooseside", "Back", nullptr));
+        pushButton_5->setText(QApplication::translate("chooseside", "Offense", nullptr));
     } // retranslateUi
 
 };

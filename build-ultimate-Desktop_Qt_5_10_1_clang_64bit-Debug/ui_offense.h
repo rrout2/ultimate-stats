@@ -15,18 +15,23 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_Offense
 {
 public:
+    QLabel *label;
 
     void setupUi(QDialog *Offense)
     {
         if (Offense->objectName().isEmpty())
             Offense->setObjectName(QStringLiteral("Offense"));
-        Offense->resize(864, 470);
+        Offense->resize(940, 498);
+        label = new QLabel(Offense);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(440, 20, 60, 16));
 
         retranslateUi(Offense);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QDialog *Offense)
     {
         Offense->setWindowTitle(QApplication::translate("Offense", "Dialog", nullptr));
+        label->setText(QApplication::translate("Offense", "O-Line", nullptr));
     } // retranslateUi
 
 };

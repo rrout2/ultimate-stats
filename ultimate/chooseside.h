@@ -24,6 +24,10 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     roster ours;
     std::vector<player> line; // either empty or 7 people

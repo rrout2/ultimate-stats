@@ -207,3 +207,23 @@ void chooseside::on_pushButton_4_clicked() // back button
     hide();
     parentWidget()->show();
 }
+
+void chooseside::on_pushButton_5_clicked() // to offense screen
+{
+    if (line.size() != 7) {
+        return;
+    }
+    hide();
+    offense = new Offense(this, line);
+    offense->show();
+}
+
+void chooseside::on_pushButton_2_clicked()
+{
+    if (line.size() != 7) {
+        return;
+    }
+    hide();
+    defense = new Defense(this, line);
+    defense->show();
+}

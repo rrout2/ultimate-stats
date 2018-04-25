@@ -18,3 +18,7 @@
 * Next: need to add individual offense and defense GUIs
 ![AddingToLine1](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/7online1.png?token=Acz5q3Z-QcVDmzOFCfhbKkV-S1ZLkvlGks5a6AyjwA%3D%3D)
 ![AddingToLine2](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/7online2.png?token=Acz5q56csr0BbcLEGwr36KwG1A8xjptoks5a6AylwA%3D%3D)
+
+## 4/24/18
+* Connected chooseside.ui to offense.ui and defense.ui
+* Having problem with 10th(?) position in rostering, offset checkbox
