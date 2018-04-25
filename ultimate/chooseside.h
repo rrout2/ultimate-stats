@@ -18,6 +18,8 @@ public:
     explicit chooseside(QWidget *parent = 0);
     chooseside(QWidget *parent, roster &r);
     ~chooseside();
+    int our_score = 0;
+    int opp_score = 0;
 
 private slots:
     void on_pushButton_3_clicked();

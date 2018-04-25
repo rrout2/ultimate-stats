@@ -4,8 +4,8 @@
 
 class player
 {
-private:
-
+public:
+    std::string name_;
     int ds_;
     int throwaways_;
     int assists_;
@@ -14,8 +14,8 @@ private:
     int touches_;
     int catches_;
     int drops_;
-public:
-    std::string name_;
+    int recYards_;
+    int throwYards_;
     player();
     player(std::string n) : name_(n) {};
 };

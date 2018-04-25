@@ -128,6 +128,7 @@ void chooseside::load_checked_names() { // called from constructor
 
 void chooseside::on_pushButton_3_clicked() // confirm line button
 {
+    line.clear();
     if (ui->checkBox_1->isChecked()) {
         line.push_back(ours.team[0]);
     }
@@ -218,7 +219,7 @@ void chooseside::on_pushButton_5_clicked() // to offense screen
     offense->show();
 }
 
-void chooseside::on_pushButton_2_clicked()
+void chooseside::on_pushButton_2_clicked() // defense
 {
     if (line.size() != 7) {
         return;

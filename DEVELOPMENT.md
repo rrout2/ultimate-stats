@@ -23,3 +23,6 @@
 * Connected chooseside.ui to offense.ui and defense.ui
 * Having problem with 10th(?) position in rostering, offset checkbox
 ![problem](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/problem_offset.png?token=Acz5q2AfxQfkzIrrtp_t1NSEySIfo67Qks5a6SdkwA%3D%3D)
+* Added extensive offensive UI grid in order to keep track of yards gained
+* Green areas to delineate endzones
+* buttons not yet functional, so no stats tracked yet

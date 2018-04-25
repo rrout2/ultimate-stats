@@ -16,7 +16,7 @@ public:
     explicit Offense(QWidget *parent = 0);
     ~Offense();
     Offense(QWidget *parent, std::vector<player> &l);
-
+    void loadNames();
 
 private:
     Ui::Offense *ui;
