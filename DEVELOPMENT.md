@@ -27,3 +27,4 @@
 * Green areas to delineate endzones
 * buttons not yet functional, so no stats tracked yet
 ![fullfiel](https://raw.githubusercontent.com/uiuc-sp18-cs126/final-project-rrout2/master/screenshots/fullfieldO.png?token=Acz5q6L1cUDUtEaQjQsB9Cv8irfibqYnks5a6W8twA%3D%3D)
+* Added basic defense GUI w/0 functionality.

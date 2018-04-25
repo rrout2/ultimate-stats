@@ -16,6 +16,10 @@ public:
     explicit Defense(QWidget *parent = 0);
     Defense(QWidget *parent, std::vector<player> &l);
     ~Defense();
+    void loadNames();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::Defense *ui;
