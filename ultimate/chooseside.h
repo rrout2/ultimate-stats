@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "roster.h"
+#include "offense.h"
+#include "defense.h"
 #include <vector>
 namespace Ui {
 class chooseside;
@@ -16,15 +18,18 @@ public:
     explicit chooseside(QWidget *parent = 0);
     chooseside(QWidget *parent, roster &r);
     ~chooseside();
-//    chooseside(roster &r);
 
 private slots:
     void on_pushButton_3_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     roster ours;
-    std::vector<player> line;
+    std::vector<player> line; // either empty or 7 people
     Ui::chooseside *ui;
+    Offense *offense;
+    Defense *defense;
     void load_checked_names();
 };
 

@@ -71,6 +71,7 @@ public:
     QLabel *label_21;
     QPushButton *pushButton_3;
     QLabel *myLine;
+    QPushButton *pushButton_4;
 
     void setupUi(QDialog *chooseside)
     {
@@ -240,6 +241,9 @@ public:
         myLine->setObjectName(QStringLiteral("myLine"));
         myLine->setGeometry(QRect(260, 30, 101, 191));
         myLine->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+        pushButton_4 = new QPushButton(chooseside);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(0, 20, 81, 32));
 
         retranslateUi(chooseside);
 
@@ -296,6 +300,7 @@ public:
         label_21->setText(QString());
         pushButton_3->setText(QApplication::translate("chooseside", "Confirm Line", nullptr));
         myLine->setText(QApplication::translate("chooseside", "Line", nullptr));
+        pushButton_4->setText(QApplication::translate("chooseside", "Back", nullptr));
     } // retranslateUi
 
 };

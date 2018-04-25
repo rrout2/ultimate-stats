@@ -53,7 +53,7 @@ void MainWindow::on_pushButton_clicked()
     ui->label_2->setText(qs);
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_2_clicked() // continue to choose side/roster screen
 {
     hide();
     choose = new chooseside(this, ours);

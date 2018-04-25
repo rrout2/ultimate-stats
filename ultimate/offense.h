@@ -2,7 +2,8 @@
 #define OFFENSE_H
 
 #include <QDialog>
-
+#include "vector"
+#include "player.h"
 namespace Ui {
 class Offense;
 }
@@ -14,9 +15,12 @@ class Offense : public QDialog
 public:
     explicit Offense(QWidget *parent = 0);
     ~Offense();
+    Offense(QWidget *parent, std::vector<player> &l);
+
 
 private:
     Ui::Offense *ui;
+    std::vector<player> line;
 };
 
 #endif // OFFENSE_H

@@ -1,9 +1,10 @@
 #include "offense.h"
 #include "ui_offense.h"
-
-Offense::Offense(QWidget *parent) :
+#include <vector>
+Offense::Offense(QWidget *parent, std::vector<player> &l) :
     QDialog(parent),
-    ui(new Ui::Offense)
+    ui(new Ui::Offense),
+    line(l)
 {
     ui->setupUi(this);
 }
@@ -12,3 +13,4 @@ Offense::~Offense()
 {
     delete ui;
 }
+

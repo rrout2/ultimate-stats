@@ -1,9 +1,10 @@
 #include "defense.h"
 #include "ui_defense.h"
 
-Defense::Defense(QWidget *parent) :
+Defense::Defense(QWidget *parent, std::vector<player> &l) :
     QDialog(parent),
-    ui(new Ui::Defense)
+    ui(new Ui::Defense),
+    line(l)
 {
     ui->setupUi(this);
 }

@@ -17,7 +17,7 @@ chooseside::~chooseside()
     delete ui;
 }
 
-void chooseside::load_checked_names() {
+void chooseside::load_checked_names() { // called from constructor
     if (!ours.team.empty()) {
         ui->label_1->setText(ours.team[0].name_.c_str());
     } else {
@@ -200,4 +200,10 @@ void chooseside::on_pushButton_3_clicked() // confirm line button
             ui->myLine->setText(ui->myLine->text() + a.name_.c_str() + "\n");
         }
     }
+}
+
+void chooseside::on_pushButton_4_clicked() // back button
+{
+    hide();
+    parentWidget()->show();
 }
