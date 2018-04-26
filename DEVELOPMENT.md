@@ -38,3 +38,7 @@
 * removed green endzones temporarily because they blocked buttons for some reason
 * added additional backend offensive trackers to keep track of who has disc, and how far upfield each throw/catch goes
 * long way to go
+
+## 4/26/18
+* went through with debugger to determine some points of crash
+  * fixed pick up crash
