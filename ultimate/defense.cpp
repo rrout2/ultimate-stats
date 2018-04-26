@@ -25,7 +25,57 @@ void Defense::loadNames() {
     ui->label_2->setText(line[6].name_.c_str());
 }
 
-void Defense::on_pushButton_clicked()
+void Defense::on_pushButton_clicked() // opponent throwawy
 {
+    close();
+    parentWidget()->show();
+}
 
+void Defense::on_pushButton_3_clicked() // pl1 D
+{
+    line[0].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_9_clicked() // pl2 D
+{
+    line[1].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_5_clicked() // pl3 D
+{
+    line[2].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_7_clicked()
+{
+    line[3].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_4_clicked()
+{
+    line[4].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_6_clicked()
+{
+    line[5].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_8_clicked()
+{
+    line[6].ds_++;
+    close();
+    parentWidget()->show();
 }

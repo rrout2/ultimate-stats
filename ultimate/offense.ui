@@ -42,35 +42,6 @@
     <string>Catch</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>19</x>
-     <y>45</y>
-     <width>341</width>
-     <height>491</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>1270</x>
-     <y>40</y>
-     <width>311</width>
-     <height>501</height>
-    </rect>
-   </property>
-   <property name="accessibleDescription">
-    <string>score</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
