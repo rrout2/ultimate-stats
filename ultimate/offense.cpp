@@ -48,8 +48,11 @@ void Offense::on_pushButton_2_clicked() // pick up
 {
     bool found = false;
     for (int i = 0; i < ui->horizontalLayout->count(); i++) { // a player has to be checked
-        QLayoutItem *item = ui->horizontalLayout->itemAt(i);
-        QRadioButton *button = dynamic_cast<QRadioButton*>(item);
+        QWidget *wid = ui->horizontalLayout->itemAt(i)->widget();
+        QRadioButton *button = dynamic_cast<QRadioButton*>(wid);
+        if(!button) {
+            continue;
+        }
         if (button->isChecked()) {
             prev_hold = line[i];
             curr_hold = line[i];
@@ -66,7 +69,7 @@ void Offense::on_pushButton_2_clicked() // pick up
     found = false;
 
     for (int i = 0; i < ui->gridLayout->count(); i++) {
-        QLayoutItem *item = ui->gridLayout->itemAt(i);
+        QWidget *item = ui->gridLayout->itemAt(i)->widget();
         QRadioButton *button = dynamic_cast<QRadioButton*>(item);
         if (button->isChecked()) {
             QString qs_name = button->accessibleName();

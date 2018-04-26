@@ -4,7 +4,6 @@
 #include <QDialog>
 #include "vector"
 #include "player.h"
-#include "defense.h"
 namespace Ui {
 class Offense;
 }
@@ -33,7 +32,6 @@ private slots:
 private:
     Ui::Offense *ui;
     std::vector<player> line; // 7 on the line
-//    Defense *defense;
 };
 
 #endif // OFFENSE_H
