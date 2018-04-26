@@ -29,8 +29,6 @@ class Ui_Offense
 public:
     QLabel *label;
     QPushButton *pushButton;
-    QLabel *label_9;
-    QLabel *label_10;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
@@ -1267,12 +1265,6 @@ public:
         pushButton = new QPushButton(Offense);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(770, 590, 113, 51));
-        label_9 = new QLabel(Offense);
-        label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(19, 45, 341, 491));
-        label_10 = new QLabel(Offense);
-        label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(1270, 40, 311, 501));
         pushButton_2 = new QPushButton(Offense);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(660, 600, 113, 32));
@@ -7389,11 +7381,6 @@ public:
         Offense->setWindowTitle(QApplication::translate("Offense", "Dialog", nullptr));
         label->setText(QApplication::translate("Offense", "O-Line", nullptr));
         pushButton->setText(QApplication::translate("Offense", "Catch", nullptr));
-        label_9->setText(QString());
-#ifndef QT_NO_ACCESSIBILITY
-        label_10->setAccessibleDescription(QApplication::translate("Offense", "score", nullptr));
-#endif // QT_NO_ACCESSIBILITY
-        label_10->setText(QString());
         pushButton_2->setText(QApplication::translate("Offense", "Pick Up", nullptr));
         pushButton_3->setText(QApplication::translate("Offense", "Drop", nullptr));
         pushButton_4->setText(QApplication::translate("Offense", "Throwaway", nullptr));
