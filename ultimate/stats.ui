@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Stats</class>
+ <widget class="QDialog" name="Stats">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1257</width>
+    <height>478</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>1121</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>D's</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Throwaways</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Assists</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Goals</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Completions</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Touches</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Catches</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Drops</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Receiving Yards</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Throwing Yards</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

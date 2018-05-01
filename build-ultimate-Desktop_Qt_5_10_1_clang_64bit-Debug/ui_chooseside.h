@@ -75,6 +75,7 @@ public:
     QLabel *label_22;
     QLabel *label_23;
     QPushButton *pushButton;
+    QPushButton *pushButton_6;
 
     void setupUi(QDialog *chooseside)
     {
@@ -252,10 +253,13 @@ public:
         label_22->setGeometry(QRect(270, 290, 101, 20));
         label_23 = new QLabel(chooseside);
         label_23->setObjectName(QStringLiteral("label_23"));
-        label_23->setGeometry(QRect(260, 310, 91, 20));
+        label_23->setGeometry(QRect(260, 310, 101, 41));
         pushButton = new QPushButton(chooseside);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(260, 251, 121, 31));
+        pushButton_6 = new QPushButton(chooseside);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(260, 370, 113, 32));
 
         retranslateUi(chooseside);
 
@@ -316,6 +320,7 @@ public:
         label_22->setText(QApplication::translate("chooseside", "Current Score", nullptr));
         label_23->setText(QString());
         pushButton->setText(QApplication::translate("chooseside", "Update Score", nullptr));
+        pushButton_6->setText(QApplication::translate("chooseside", "View Stats", nullptr));
     } // retranslateUi
 
 };

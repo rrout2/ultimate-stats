@@ -1252,6 +1252,9 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_8;
+    QLabel *label_9;
+    QLabel *label_10;
+    QLabel *label_11;
 
     void setupUi(QDialog *Offense)
     {
@@ -1260,23 +1263,23 @@ public:
         Offense->resize(1806, 693);
         label = new QLabel(Offense);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(790, 10, 60, 16));
+        label->setGeometry(QRect(910, 10, 111, 41));
         label->setAlignment(Qt::AlignCenter);
         pushButton = new QPushButton(Offense);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(770, 590, 113, 51));
+        pushButton->setGeometry(QRect(760, 620, 113, 51));
         pushButton_2 = new QPushButton(Offense);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(660, 600, 113, 32));
+        pushButton_2->setGeometry(QRect(650, 630, 113, 32));
         pushButton_3 = new QPushButton(Offense);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(880, 600, 113, 32));
+        pushButton_3->setGeometry(QRect(870, 630, 113, 32));
         pushButton_4 = new QPushButton(Offense);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(770, 640, 113, 32));
+        pushButton_4->setGeometry(QRect(760, 670, 113, 32));
         layoutWidget = new QWidget(Offense);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 40, 1731, 501));
+        layoutWidget->setGeometry(QRect(10, 60, 1731, 501));
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -7283,7 +7286,7 @@ public:
 
         layoutWidget1 = new QWidget(Offense);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(430, 570, 891, 18));
+        layoutWidget1->setGeometry(QRect(420, 600, 891, 18));
         horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -7324,7 +7327,7 @@ public:
 
         layoutWidget2 = new QWidget(Offense);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(380, 550, 891, 20));
+        layoutWidget2->setGeometry(QRect(370, 580, 891, 20));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -7370,6 +7373,28 @@ public:
 
         horizontalLayout_2->addWidget(label_8);
 
+        label_9 = new QLabel(Offense);
+        label_9->setObjectName(QStringLiteral("label_9"));
+        label_9->setGeometry(QRect(709, 549, 151, 31));
+        label_10 = new QLabel(Offense);
+        label_10->setObjectName(QStringLiteral("label_10"));
+        label_10->setGeometry(QRect(1400, 60, 341, 491));
+        label_10->setStyleSheet(QStringLiteral("background-color: green;"));
+        label_11 = new QLabel(Offense);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(10, 60, 341, 491));
+        label_11->setStyleSheet(QStringLiteral("background-color: green;"));
+        label_11->raise();
+        label_10->raise();
+        label->raise();
+        pushButton->raise();
+        pushButton_2->raise();
+        pushButton_3->raise();
+        pushButton_4->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        label_9->raise();
 
         retranslateUi(Offense);
 
@@ -7379,7 +7404,7 @@ public:
     void retranslateUi(QDialog *Offense)
     {
         Offense->setWindowTitle(QApplication::translate("Offense", "Dialog", nullptr));
-        label->setText(QApplication::translate("Offense", "O-Line", nullptr));
+        label->setText(QApplication::translate("Offense", "<h1>Offense</h1>", nullptr));
         pushButton->setText(QApplication::translate("Offense", "Catch", nullptr));
         pushButton_2->setText(QApplication::translate("Offense", "Pick Up", nullptr));
         pushButton_3->setText(QApplication::translate("Offense", "Drop", nullptr));
@@ -12921,6 +12946,9 @@ public:
         label_6->setText(QString());
         label_7->setText(QString());
         label_8->setText(QString());
+        label_9->setText(QString());
+        label_10->setText(QString());
+        label_11->setText(QString());
     } // retranslateUi
 
 };

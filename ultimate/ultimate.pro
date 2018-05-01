@@ -30,7 +30,8 @@ SOURCES += \
     roster.cpp \
     offense.cpp \
     defense.cpp \
-    chooseside.cpp
+    chooseside.cpp \
+    stats.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,10 +39,12 @@ HEADERS += \
     roster.h \
     offense.h \
     defense.h \
-    chooseside.h
+    chooseside.h \
+    stats.h
 
 FORMS += \
         mainwindow.ui \
     offense.ui \
     defense.ui \
-    chooseside.ui
+    chooseside.ui \
+    stats.ui

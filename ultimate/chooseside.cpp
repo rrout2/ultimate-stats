@@ -141,67 +141,67 @@ void chooseside::on_pushButton_3_clicked() // confirm line button
 {
     line.clear();
     if (ui->checkBox_1->isChecked()) {
-        line.push_back(ours.team[0]);
+        line.push_back(&(ours.team[0]));
     }
     if (ui->checkBox_2->isChecked()) {
-        line.push_back(ours.team[1]);
+        line.push_back(&(ours.team[1]));
     }
     if (ui->checkBox_3->isChecked()) {
-        line.push_back(ours.team[2]);
+        line.push_back(&(ours.team[2]));
     }
     if (ui->checkBox_4->isChecked()) {
-        line.push_back(ours.team[3]);
+        line.push_back(&(ours.team[3]));
     }
     if (ui->checkBox_5->isChecked()) {
-        line.push_back(ours.team[4]);
+        line.push_back(&(ours.team[4]));
     }
     if (ui->checkBox_6->isChecked()) {
-        line.push_back(ours.team[5]);
+        line.push_back(&(ours.team[5]));
     }
     if (ui->checkBox_7->isChecked()) {
-        line.push_back(ours.team[6]);
+        line.push_back(&(ours.team[6]));
     }
     if (ui->checkBox_8->isChecked()) {
-        line.push_back(ours.team[7]);
+        line.push_back(&(ours.team[7]));
     }
     if (ui->checkBox_9->isChecked()) {
-        line.push_back(ours.team[8]);
+        line.push_back(&(ours.team[8]));
     }
     if (ui->checkBox_10->isChecked()) {
-        line.push_back(ours.team[9]);
+        line.push_back(&(ours.team[9]));
     }
     if (ui->checkBox_11->isChecked()) {
-        line.push_back(ours.team[10]);
+        line.push_back(&(ours.team[10]));
     }
     if (ui->checkBox_12->isChecked()) {
-        line.push_back(ours.team[11]);
+        line.push_back(&(ours.team[11]));
     }
     if (ui->checkBox_13->isChecked()) {
-        line.push_back(ours.team[12]);
+        line.push_back(&(ours.team[12]));
     }
     if (ui->checkBox_14->isChecked()) {
-        line.push_back(ours.team[13]);
+        line.push_back(&(ours.team[13]));
     }
     if (ui->checkBox_15->isChecked()) {
-        line.push_back(ours.team[14]);
+        line.push_back(&(ours.team[14]));
     }
     if (ui->checkBox_16->isChecked()) {
-        line.push_back(ours.team[15]);
+        line.push_back(&(ours.team[15]));
     }
     if (ui->checkBox_17->isChecked()) {
-        line.push_back(ours.team[16]);
+        line.push_back(&(ours.team[16]));
     }
     if (ui->checkBox_18->isChecked()) {
-        line.push_back(ours.team[17]);
+        line.push_back(&(ours.team[17]));
     }
     if (ui->checkBox_19->isChecked()) {
-        line.push_back(ours.team[18]);
+        line.push_back(&(ours.team[18]));
     }
     if (ui->checkBox_20->isChecked()) {
-        line.push_back(ours.team[19]);
+        line.push_back(&(ours.team[19]));
     }
     if (ui->checkBox_21->isChecked()) {
-        line.push_back(ours.team[20]);
+        line.push_back(&(ours.team[20]));
     }
     if (line.size() != 7) {
         ui->myLine->setText("Must have 7 \nplayers \nchecked");
@@ -209,7 +209,7 @@ void chooseside::on_pushButton_3_clicked() // confirm line button
     } else {
         ui->myLine->setText("");
         for (auto a : line) {
-            ui->myLine->setText(ui->myLine->text() + a.name_.c_str() + "\n");
+            ui->myLine->setText(ui->myLine->text() + (*a).name_.c_str() + "\n");
         }
     }
 }
@@ -251,4 +251,11 @@ void chooseside::on_pushButton_clicked() // update score
     a = std::to_string(y);
     s.append(std::to_string(*opp_score));
     ui->label_23->setText(s.c_str());
+}
+
+void chooseside::on_pushButton_6_clicked() // view stats
+{
+    hide();
+    stats = new Stats(this, ours);
+    stats->show();
 }

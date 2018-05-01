@@ -721,8 +721,8 @@
     <rect>
      <x>260</x>
      <y>310</y>
-     <width>91</width>
-     <height>20</height>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -740,6 +740,19 @@
    </property>
    <property name="text">
     <string>Update Score</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>370</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>View Stats</string>
    </property>
   </widget>
  </widget>

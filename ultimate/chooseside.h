@@ -6,6 +6,7 @@
 #include "offense.h"
 #include "defense.h"
 #include <vector>
+#include "stats.h"
 namespace Ui {
 class chooseside;
 }
@@ -33,14 +34,17 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_6_clicked();
+
 private:
     int a = 0;
     int b = 0;
     roster ours;
-    std::vector<player> line; // either empty or 7 people
+    std::vector<player *> line; // either empty or 7 people
     Ui::chooseside *ui;
     Offense *offense;
     Defense *defense;
+    Stats *stats;
     void load_checked_names();
 };
 

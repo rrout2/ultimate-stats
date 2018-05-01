@@ -14,7 +14,7 @@ class Defense : public QDialog
 
 public:
     explicit Defense(QWidget *parent = 0);
-    Defense(QWidget *parent, std::vector<player> &l, int *our_s, int * opp_s);
+    Defense(QWidget *parent, std::vector<player*> l, int *our_s, int * opp_s);
     ~Defense();
     void loadNames();
     int *our_score;
@@ -43,7 +43,7 @@ private slots:
 
 private:
     Ui::Defense *ui;
-    std::vector<player> line;
+    std::vector<player*> line;
 };
 
 #endif // DEFENSE_H

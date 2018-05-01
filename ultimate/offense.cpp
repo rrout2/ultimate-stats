@@ -5,18 +5,20 @@
 #include <iostream>
 #include <sstream>
 
-Offense::Offense(QWidget *parent, std::vector<player> &l, int *our_s, int *opp_s) :
+Offense::Offense(QWidget *parent, std::vector<player *> l, int *our_s, int *opp_s) :
     QDialog(parent),
-    ui(new Ui::Offense),
-    line(l)
+    ui(new Ui::Offense)
 {
     ui->setupUi(this);
+    line = l;
     loadNames();
     QPixmap endz("/Users/rishav/Downloads/green_rect.png");
+    QPixmap arrow("/Users/rishav/Downloads/arrowright.png");
 //    ui->label_9->setPixmap(endz);
 //    ui->label_10->setPixmap(endz);
     our_score = our_s;
     opp_score = opp_s;
+    ui->label_9->setPixmap(arrow);
 }
 
 Offense::~Offense()
@@ -26,25 +28,37 @@ Offense::~Offense()
 }
 
 void Offense::loadNames() {
-    ui->label_2->setText(line[0].name_.c_str());
-    ui->label_3->setText(line[1].name_.c_str());
-    ui->label_4->setText(line[2].name_.c_str());
-    ui->label_5->setText(line[3].name_.c_str());
-    ui->label_6->setText(line[4].name_.c_str());
-    ui->label_7->setText(line[5].name_.c_str());
-    ui->label_8->setText(line[6].name_.c_str());
+    ui->label_2->setText((*line[0]).name_.c_str());
+    ui->label_3->setText((*line[1]).name_.c_str());
+    ui->label_4->setText((*line[2]).name_.c_str());
+    ui->label_5->setText((*line[3]).name_.c_str());
+    ui->label_6->setText((*line[4]).name_.c_str());
+    ui->label_7->setText((*line[5]).name_.c_str());
+    ui->label_8->setText((*line[6]).name_.c_str());
 }
 
 void Offense::on_pushButton_4_clicked() // throwaway
 {
-    curr_hold.throwaways_++;
+    (*curr_hold).throwaways_ += 1;
     close();
     parentWidget()->show();
 }
 
 void Offense::on_pushButton_3_clicked() // drop
 {
-    curr_hold.drops_++;
+    for (int i = 0; i < ui->horizontalLayout->count(); i++) { // checks new person w disc
+        QWidget *wid = ui->horizontalLayout->itemAt(i)->widget();
+        QRadioButton *button = dynamic_cast<QRadioButton*>(wid);
+        if(!button) {
+            continue;
+        }
+        if (button->isChecked()) {
+            curr_hold = line[i];
+            break;
+        }
+    }
+
+    curr_hold->drops_ += 1;
     close();
     parentWidget()->show();
 }
@@ -61,7 +75,7 @@ void Offense::on_pushButton_2_clicked() // pick up
         if (button->isChecked()) {
             prev_hold = line[i];
             curr_hold = line[i];
-            line[i].touches_++;
+            (*line[i]).touches_ += 1;
             found = true;
             break;
         }
@@ -81,7 +95,7 @@ void Offense::on_pushButton_2_clicked() // pick up
             std::string name = qs_name.toUtf8().constData();
             std::stringstream conv(name);
             conv >> prev_loc;
-            conv >> vert_loc;
+            vert_loc = prev_loc;
 
         }
     }
@@ -99,7 +113,7 @@ void Offense::on_pushButton_clicked() // catch
         if (button->isChecked()) {
             prev_hold = curr_hold;
             curr_hold = line[i];
-            line[i].touches_++;
+            (*line[i]).touches_ += 1;
             found = true;
             break;
         }
@@ -134,12 +148,14 @@ void Offense::on_pushButton_clicked() // catch
     }
 
     int yards_gained = vert_loc - prev_loc;
-    curr_hold.recYards_ += yards_gained;
-    prev_hold.throwYards_ += yards_gained;
+    curr_hold->recYards_ += yards_gained;
+    (*prev_hold).throwYards_ += yards_gained;
 
+    (*prev_hold).completions_ += 1;
+    (*curr_hold).catches_ += 1;
     if (scored) {
-        curr_hold.goals_ += 1;
-        prev_hold.assists_ += 1;
+        (*curr_hold).goals_ += 1;
+        (*prev_hold).assists_ += 1;
         ++(*our_score);
         close();
         parentWidget()->show();

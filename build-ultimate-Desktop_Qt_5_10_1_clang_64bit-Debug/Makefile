@@ -56,10 +56,12 @@ SOURCES       = ../ultimate/main.cpp \
 		../ultimate/roster.cpp \
 		../ultimate/offense.cpp \
 		../ultimate/defense.cpp \
-		../ultimate/chooseside.cpp moc_mainwindow.cpp \
+		../ultimate/chooseside.cpp \
+		../ultimate/stats.cpp moc_mainwindow.cpp \
 		moc_offense.cpp \
 		moc_defense.cpp \
-		moc_chooseside.cpp
+		moc_chooseside.cpp \
+		moc_stats.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		player.o \
@@ -67,10 +69,12 @@ OBJECTS       = main.o \
 		offense.o \
 		defense.o \
 		chooseside.o \
+		stats.o \
 		moc_mainwindow.o \
 		moc_offense.o \
 		moc_defense.o \
-		moc_chooseside.o
+		moc_chooseside.o \
+		moc_stats.o
 DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/qdevice.pri \
 		/Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/device_config.prf \
@@ -262,13 +266,15 @@ DIST          = /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/spec_pre.prf \
 		../ultimate/roster.h \
 		../ultimate/offense.h \
 		../ultimate/defense.h \
-		../ultimate/chooseside.h ../ultimate/main.cpp \
+		../ultimate/chooseside.h \
+		../ultimate/stats.h ../ultimate/main.cpp \
 		../ultimate/mainwindow.cpp \
 		../ultimate/player.cpp \
 		../ultimate/roster.cpp \
 		../ultimate/offense.cpp \
 		../ultimate/defense.cpp \
-		../ultimate/chooseside.cpp
+		../ultimate/chooseside.cpp \
+		../ultimate/stats.cpp
 QMAKE_TARGET  = ultimate
 DESTDIR       = 
 TARGET        = ultimate.app/Contents/MacOS/ultimate
@@ -282,7 +288,7 @@ EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h ui_stats.h $(OBJECTS)  
 	@test -d ultimate.app/Contents/MacOS/ || mkdir -p ultimate.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -697,9 +703,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/mainwindow.h ../ultimate/player.h ../ultimate/roster.h ../ultimate/offense.h ../ultimate/defense.h ../ultimate/chooseside.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp ../ultimate/player.cpp ../ultimate/roster.cpp ../ultimate/offense.cpp ../ultimate/defense.cpp ../ultimate/chooseside.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ultimate/mainwindow.ui ../ultimate/offense.ui ../ultimate/defense.ui ../ultimate/chooseside.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/mainwindow.h ../ultimate/player.h ../ultimate/roster.h ../ultimate/offense.h ../ultimate/defense.h ../ultimate/chooseside.h ../ultimate/stats.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/main.cpp ../ultimate/mainwindow.cpp ../ultimate/player.cpp ../ultimate/roster.cpp ../ultimate/offense.cpp ../ultimate/defense.cpp ../ultimate/chooseside.cpp ../ultimate/stats.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ultimate/mainwindow.ui ../ultimate/offense.ui ../ultimate/defense.ui ../ultimate/chooseside.ui ../ultimate/stats.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -731,9 +737,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h /Users/rishav/Qt/5.10.1/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp moc_stats.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_offense.cpp moc_defense.cpp moc_chooseside.cpp moc_stats.cpp
 moc_mainwindow.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../ultimate/roster.h \
@@ -741,6 +747,9 @@ moc_mainwindow.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Hea
 		../ultimate/chooseside.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/stats.h \
 		../ultimate/mainwindow.h \
 		moc_predefs.h \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
@@ -748,6 +757,7 @@ moc_mainwindow.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Hea
 
 moc_offense.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/player.h \
 		../ultimate/offense.h \
 		moc_predefs.h \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
@@ -755,6 +765,7 @@ moc_offense.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Header
 
 moc_defense.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/player.h \
 		../ultimate/defense.h \
 		moc_predefs.h \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
@@ -764,18 +775,30 @@ moc_chooseside.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Hea
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ultimate/roster.h \
 		../ultimate/player.h \
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/stats.h \
 		../ultimate/chooseside.h \
 		moc_predefs.h \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
 	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/chooseside.h -o moc_chooseside.cpp
 
+moc_stats.cpp: /Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		../ultimate/stats.h \
+		moc_predefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/moc
+	/Users/rishav/Qt/5.10.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/rishav/Qt/5.10.1/clang_64/mkspecs/macx-clang -I/Users/rishav/Documents/of_v0.9.8_osx_release/apps/myApps/final-project-rrout2/ultimate -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers -I/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/rishav/Qt/5.10.1/clang_64/lib ../ultimate/stats.h -o moc_stats.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h
+compiler_uic_make_all: ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h ui_stats.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h
+	-$(DEL_FILE) ui_mainwindow.h ui_offense.h ui_defense.h ui_chooseside.h ui_stats.h
 ui_mainwindow.h: ../ultimate/mainwindow.ui \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
 	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/mainwindow.ui -o ui_mainwindow.h
@@ -791,6 +814,10 @@ ui_defense.h: ../ultimate/defense.ui \
 ui_chooseside.h: ../ultimate/chooseside.ui \
 		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
 	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/chooseside.ui -o ui_chooseside.h
+
+ui_stats.h: ../ultimate/stats.ui \
+		/Users/rishav/Qt/5.10.1/clang_64/bin/uic
+	/Users/rishav/Qt/5.10.1/clang_64/bin/uic ../ultimate/stats.ui -o ui_stats.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -812,6 +839,9 @@ main.o: ../ultimate/main.cpp ../ultimate/mainwindow.h \
 		../ultimate/chooseside.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/stats.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ultimate/main.cpp
@@ -824,6 +854,9 @@ mainwindow.o: ../ultimate/mainwindow.cpp ../ultimate/mainwindow.h \
 		../ultimate/chooseside.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/stats.h \
 		ui_mainwindow.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
@@ -839,12 +872,16 @@ roster.o: ../ultimate/roster.cpp ../ultimate/roster.h \
 offense.o: ../ultimate/offense.cpp ../ultimate/offense.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_offense.h
+		../ultimate/player.h \
+		ui_offense.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o offense.o ../ultimate/offense.cpp
 
 defense.o: ../ultimate/defense.cpp ../ultimate/defense.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/player.h \
 		ui_defense.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o defense.o ../ultimate/defense.cpp
 
@@ -853,8 +890,295 @@ chooseside.o: ../ultimate/chooseside.cpp ../ultimate/chooseside.h \
 		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../ultimate/roster.h \
 		../ultimate/player.h \
-		ui_chooseside.h
+		../ultimate/offense.h \
+		../ultimate/defense.h \
+		../ultimate/stats.h \
+		ui_chooseside.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/QtCore \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qatomic.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcache.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qchar.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcollator.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qendian.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qexception.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qflags.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfuture.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qhash.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qisenum.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qiterator.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qline.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmargins.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qplugin.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qprocess.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qqueue.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qrandom.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qrect.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qregexp.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qresource.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qset.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsettings.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstack.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstate.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qstringview.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/quuid.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/QtGui \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qbrush.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qcursor.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qdrag.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qmovie.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpalette.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpicture.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qregion.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qscreen.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qsurface.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qwindow.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtGui.framework/Headers/qtguiversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chooseside.o ../ultimate/chooseside.cpp
+
+stats.o: ../ultimate/stats.cpp ../ultimate/stats.h \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/rishav/Qt/5.10.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../ultimate/roster.h \
+		../ultimate/player.h \
+		ui_stats.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o stats.o ../ultimate/stats.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -867,6 +1191,9 @@ moc_defense.o: moc_defense.cpp
 
 moc_chooseside.o: moc_chooseside.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chooseside.o moc_chooseside.cpp
+
+moc_stats.o: moc_stats.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_stats.o moc_stats.cpp
 
 ####### Install
 

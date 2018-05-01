@@ -6,16 +6,16 @@ class player
 {
 public:
     std::string name_;
-    int ds_;
-    int throwaways_;
-    int assists_;
-    int goals_;
-    int completions_;
-    int touches_;
-    int catches_;
-    int drops_;
-    int recYards_;
-    int throwYards_;
+    int ds_ = 0;
+    int throwaways_ = 0;
+    int assists_ = 0;
+    int goals_ = 0;
+    int completions_ = 0;
+    int touches_ = 0;
+    int catches_ = 0;
+    int drops_ = 0;
+    int recYards_ = 0;
+    int throwYards_ = 0;
     player();
     player(std::string n) : name_(n) {};
 };

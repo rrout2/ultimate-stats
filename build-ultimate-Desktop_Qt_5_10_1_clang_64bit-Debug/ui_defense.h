@@ -36,7 +36,7 @@ public:
     QLabel *label_4;
     QLabel *label_3;
     QLabel *label_2;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_9;
@@ -45,21 +45,22 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton_6;
     QPushButton *pushButton_8;
+    QLabel *label;
 
     void setupUi(QDialog *Defense)
     {
         if (Defense->objectName().isEmpty())
             Defense->setObjectName(QStringLiteral("Defense"));
-        Defense->resize(252, 344);
+        Defense->resize(252, 457);
         pushButton = new QPushButton(Defense);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(50, 50, 131, 32));
+        pushButton->setGeometry(QRect(50, 80, 131, 32));
         pushButton_2 = new QPushButton(Defense);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(60, 20, 113, 32));
+        pushButton_2->setGeometry(QRect(60, 50, 113, 32));
         layoutWidget = new QWidget(Defense);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(50, 90, 161, 162));
+        layoutWidget->setGeometry(QRect(80, 120, 131, 231));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -105,47 +106,50 @@ public:
 
         verticalLayout->addWidget(label_2);
 
-        widget = new QWidget(Defense);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 90, 21, 161));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(Defense);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(30, 120, 52, 236));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        pushButton_3 = new QPushButton(widget);
+        pushButton_3 = new QPushButton(layoutWidget1);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
 
         verticalLayout_2->addWidget(pushButton_3);
 
-        pushButton_9 = new QPushButton(widget);
+        pushButton_9 = new QPushButton(layoutWidget1);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
 
         verticalLayout_2->addWidget(pushButton_9);
 
-        pushButton_5 = new QPushButton(widget);
+        pushButton_5 = new QPushButton(layoutWidget1);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
 
         verticalLayout_2->addWidget(pushButton_5);
 
-        pushButton_7 = new QPushButton(widget);
+        pushButton_7 = new QPushButton(layoutWidget1);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
 
         verticalLayout_2->addWidget(pushButton_7);
 
-        pushButton_4 = new QPushButton(widget);
+        pushButton_4 = new QPushButton(layoutWidget1);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
 
         verticalLayout_2->addWidget(pushButton_4);
 
-        pushButton_6 = new QPushButton(widget);
+        pushButton_6 = new QPushButton(layoutWidget1);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
 
         verticalLayout_2->addWidget(pushButton_6);
 
-        pushButton_8 = new QPushButton(widget);
+        pushButton_8 = new QPushButton(layoutWidget1);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
 
         verticalLayout_2->addWidget(pushButton_8);
 
+        label = new QLabel(Defense);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(59, 10, 111, 31));
 
         retranslateUi(Defense);
 
@@ -171,6 +175,7 @@ public:
         pushButton_4->setText(QApplication::translate("Defense", "D", nullptr));
         pushButton_6->setText(QApplication::translate("Defense", "D", nullptr));
         pushButton_8->setText(QApplication::translate("Defense", "D", nullptr));
+        label->setText(QApplication::translate("Defense", "<h1>Defense</h1>", nullptr));
     } // retranslateUi
 
 };

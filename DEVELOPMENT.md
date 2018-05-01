@@ -58,3 +58,13 @@
 * score always rockets to thousands
 * score now update works for defense, not offense
 * UPDATE: offense works now
+
+## 5/1/18
+* arrow added to indicate direction on offense ui
+* added green endzones back
+* html-esque styling
+* created stats UI to show indiv stats
+* table widget for simple display on stats ui
+* but stats not updating in stats ui for some reason
+* changed implementation of 7 man line in chooseside to be vector of pointers
+* the change to pointers fixed the stats update problem

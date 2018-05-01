@@ -15,10 +15,10 @@ class Offense : public QDialog
 public:
     explicit Offense(QWidget *parent = 0);
     ~Offense();
-    Offense(QWidget *parent, std::vector<player> &l, int *our_s, int * opp_s);
+    Offense(QWidget *parent, std::vector<player *> l, int *our_s, int * opp_s);
     void loadNames();
-    player prev_hold; // who had the disc
-    player curr_hold; // who has the disc
+    player *prev_hold; // who had the disc
+    player *curr_hold; // who has the disc
     int prev_loc;
     int vert_loc;
     int *our_score;
@@ -35,7 +35,7 @@ private slots:
 
 private:
     Ui::Offense *ui;
-    std::vector<player> line; // 7 on the line
+    std::vector<player *> line; // 7 on the line
 };
 
 #endif // OFFENSE_H

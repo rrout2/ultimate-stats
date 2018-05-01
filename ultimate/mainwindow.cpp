@@ -22,6 +22,11 @@ void MainWindow::on_lineEdit_returnPressed() // add new person to roster
     if (norm == "") { // no empty name
         return;
     }
+
+    if (ours.team.size() >= 21) { // caps roster at 21
+        return;
+    }
+
     for (auto pl : ours.team) { // makes sure no duplicate name
         if (pl.name_ == norm) {
             return;
