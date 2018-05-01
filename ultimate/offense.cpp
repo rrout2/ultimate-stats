@@ -140,7 +140,7 @@ void Offense::on_pushButton_clicked() // catch
     if (scored) {
         curr_hold.goals_ += 1;
         prev_hold.assists_ += 1;
-        *our_score++;
+        ++(*our_score);
         close();
         parentWidget()->show();
     }

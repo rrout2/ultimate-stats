@@ -57,3 +57,4 @@
 * still can't figure out pointers for score
 * score always rockets to thousands
 * score now update works for defense, not offense
+* UPDATE: offense works now
