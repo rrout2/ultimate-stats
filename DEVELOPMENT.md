@@ -39,6 +39,21 @@
 * added additional backend offensive trackers to keep track of who has disc, and how far upfield each throw/catch goes
 * long way to go
 
-## 4/26/18
+## 4/26/18 - 2 hrs
 * went through with debugger to determine some points of crash
   * fixed pick up crash
+
+## 4/27/18 - 2 hrs
+* Continued looking for why it crashes when it goes offense -> chooseside -> offense
+* unable to figure out crash 
+
+## 4/29/18 - 2 hrs
+* continued looking for crash reason to no avail
+
+## 4/30/18 - 6 hrs
+* decided to move on, worked on backend stats keeping as well as score tracking
+* now can track throwing yards and receiving yards based on the 'catch' button 
+* worked on score display in chooseside ui
+* still can't figure out pointers for score
+* score always rockets to thousands
+* score now update works for defense, not offense

@@ -1,13 +1,15 @@
 #include "defense.h"
 #include "ui_defense.h"
 
-Defense::Defense(QWidget *parent, std::vector<player> &l) :
+Defense::Defense(QWidget *parent, std::vector<player> &l, int *our_s, int *opp_s) :
     QDialog(parent),
     ui(new Ui::Defense),
     line(l)
 {
     ui->setupUi(this);
     loadNames();
+    our_score = our_s;
+    opp_score = opp_s;
 }
 
 Defense::~Defense()
@@ -76,6 +78,13 @@ void Defense::on_pushButton_6_clicked()
 void Defense::on_pushButton_8_clicked()
 {
     line[6].ds_++;
+    close();
+    parentWidget()->show();
+}
+
+void Defense::on_pushButton_2_clicked() // opp scores!
+{
+    (*opp_score) += 1;
     close();
     parentWidget()->show();
 }

@@ -72,6 +72,9 @@ public:
     QLabel *myLine;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QLabel *label_22;
+    QLabel *label_23;
+    QPushButton *pushButton;
 
     void setupUi(QDialog *chooseside)
     {
@@ -244,6 +247,15 @@ public:
         pushButton_5 = new QPushButton(chooseside);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(10, 490, 191, 71));
+        label_22 = new QLabel(chooseside);
+        label_22->setObjectName(QStringLiteral("label_22"));
+        label_22->setGeometry(QRect(270, 290, 101, 20));
+        label_23 = new QLabel(chooseside);
+        label_23->setObjectName(QStringLiteral("label_23"));
+        label_23->setGeometry(QRect(260, 310, 91, 20));
+        pushButton = new QPushButton(chooseside);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(260, 251, 121, 31));
 
         retranslateUi(chooseside);
 
@@ -301,6 +313,9 @@ public:
         myLine->setText(QApplication::translate("chooseside", "Line", nullptr));
         pushButton_4->setText(QApplication::translate("chooseside", "Back", nullptr));
         pushButton_5->setText(QApplication::translate("chooseside", "Offense", nullptr));
+        label_22->setText(QApplication::translate("chooseside", "Current Score", nullptr));
+        label_23->setText(QString());
+        pushButton->setText(QApplication::translate("chooseside", "Update Score", nullptr));
     } // retranslateUi
 
 };

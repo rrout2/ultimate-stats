@@ -9,6 +9,8 @@ chooseside::chooseside(QWidget *parent, roster &r) :
     ui(new Ui::chooseside)
 {
     ui->setupUi(this);
+    our_score = &a;
+    opp_score = &b;
     load_checked_names();
 }
 
@@ -124,6 +126,15 @@ void chooseside::load_checked_names() { // called from constructor
     } else {
         ui->checkBox_21->hide();
     }
+    std::string s = "";
+    int y = *our_score;
+    std::string a = std::to_string(y);
+    s.append(a);
+    s.append(" - ");
+    y = *opp_score;
+    a = std::to_string(y);
+    s.append(std::to_string(*opp_score));
+    ui->label_23->setText(s.c_str());
 }
 
 void chooseside::on_pushButton_3_clicked() // confirm line button
@@ -215,7 +226,7 @@ void chooseside::on_pushButton_5_clicked() // to offense screen
         return;
     }
     hide();
-    offense = new Offense(this, line);
+    offense = new Offense(this, line, our_score, opp_score);
     offense->show();
 }
 
@@ -225,6 +236,19 @@ void chooseside::on_pushButton_2_clicked() // defense
         return;
     }
     hide();
-    defense = new Defense(this, line);
+    defense = new Defense(this, line, our_score, opp_score);
     defense->show();
+}
+
+void chooseside::on_pushButton_clicked() // update score
+{
+    std::string s = "";
+    int y = *our_score;
+    std::string a = std::to_string(y);
+    s.append(a);
+    s.append(" - ");
+    y = *opp_score;
+    a = std::to_string(y);
+    s.append(std::to_string(*opp_score));
+    ui->label_23->setText(s.c_str());
 }
