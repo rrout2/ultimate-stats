@@ -39,6 +39,22 @@ void Offense::loadNames() {
 
 void Offense::on_pushButton_4_clicked() // throwaway
 {
+    bool found = false;
+    for (int i = 0; i < ui->horizontalLayout->count(); i++) { // checks new person w disc
+        QWidget *wid = ui->horizontalLayout->itemAt(i)->widget();
+        QRadioButton *button = dynamic_cast<QRadioButton*>(wid);
+        if(!button) {
+            continue;
+        }
+        if (button->isChecked()) {
+            curr_hold = line[i];
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        return;
+    }
     (*curr_hold).throwaways_ += 1;
     close();
     parentWidget()->show();
@@ -156,7 +172,7 @@ void Offense::on_pushButton_clicked() // catch
     if (scored) {
         (*curr_hold).goals_ += 1;
         (*prev_hold).assists_ += 1;
-        ++(*our_score);
+        (*our_score) += 1;
         close();
         parentWidget()->show();
     }
